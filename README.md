@@ -1,7 +1,7 @@
 # IoT-SJ
 
 here there are 2 pair of files:
-1. <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/server.py">server.py<a/> and <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/client.py"> client.py</a> 
+1. <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/server.py" target="_blank">server.py<a/> and <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/client.py" target="_blank"> client.py</a> 
 
 2. classserver.py and classclient.py 
 ## **Task**
