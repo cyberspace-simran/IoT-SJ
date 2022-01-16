@@ -1,9 +1,13 @@
 # IoT-SJ
 
-here there are 2 pair of files:
-1. <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/server.py" target="_blank">server.py<a/> and <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/client.py" target="_blank"> client.py</a> 
+Here there are 2 pair of files:
+1. <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/server.py" target="_blank">Server.py<a/> and <a href = "https://github.com/cyberspace-simran/IoT-SJ/blob/main/client.py" target="_blank"> Client.py</a> 
+ In this pair I have implemented the below task without any class implemantation
 
-2. classserver.py and classclient.py 
+2. ClassServer.py and ClassClient.py 
+  In this pair I have tried implementing the below task with in an **object oriented** manner i.e classes. 
+    
+    
 ## **Task**
 
 Implement a communication channel between raw socket client and raw socket server using socket programming in python such that the client is able to execute any OS command on the server.
