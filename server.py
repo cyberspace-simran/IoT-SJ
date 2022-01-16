@@ -3,34 +3,66 @@ import json
 import subprocess
 from uuid import uuid4
 
+serverSocket = socket.socket()
+print("********Created the Socket!!********")
 
-s = socket.socket()
-print("Socket created")
+serverSocket.bind(("localhost", 9999))
 
-s.bind(('localhost', 9999))
+serverSocket.listen()
+print("********Waiting for Client to connect!!********")
 
-s.listen()
-print('waiting for connection')
-c, addr = s.accept()
-print("connected")
 while True:
+    clientSocket, clientAddress = serverSocket.accept()
 
-    # name = c.recv(1024).decode()
+    print("Connected with Client at the address", clientAddress)
 
-    cmd = c.recv(1024).decode()
-    subprocess.Popen(cmd, shell=True)
-    strData = c.recv(1024).decode()
+    jsonDumps = clientSocket.recv(1024).decode()
+    print(jsonDumps)
 
-    print("connected with",addr)
-    print(strData)
+    try:
+        dataParse = json.loads(jsonDumps)
 
-    # print("NEW CONNECTION:", addr)
-    c.send(strData.encode("utf-8"))
+    except :
+        print("Errorcode 1")
+    command = (dataParse['command'])
+    stdout = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
 
-    clientResponse = c.recv(2048).decode("utf-8")
-    print("Client response:", clientResponse)
+    if len(command) > 0:
+        print("Command to be Executed is:- ", command)
 
 
-    c.send(bytes("We are connected", "utf -8 "))
+        result = subprocess.Popen(command, shell=True)
 
-connection.close()
+        if result.returncode == 0:
+
+            output = ({ "stdout": stdout, "stderr": -1, "id": dataParse['id'], "Error code": " "})
+            print(output)
+
+
+        else:
+
+            output = ({"stdout": stdout, "stderr": -1, "id": dataParse['id'], "Error code": 3})
+            print(output)
+
+
+    else:
+        # print("Error code 2")
+
+        output = ({"stdout": -1, "stderr": -1, "id": dataParse['id'], "Error code": 2})
+        print(output)
+
+        # print(result)
+
+    # except subprocess.CalledProcessError as e:
+    #     print("process Error")
+    #
+    # except OSError:
+    #     print("OS Error")
+    #
+    # except Exception:
+    #     print("I do not know !")
+
+
+
+    clientSocket.send(bytes("*** Go check the Server for results !!***", "utf-8"))
+
