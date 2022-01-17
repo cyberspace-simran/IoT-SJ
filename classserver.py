@@ -23,6 +23,8 @@ class Server:
         self.serverSocket.bind(("localhost", 9999))
         self.serverSocket.listen()
         print("********Waiting for Client to connect!!********")
+
+    def receive(self):
         while True:
 
             """
@@ -93,4 +95,5 @@ class Server:
 
 
 
-servercreated= Server()
+serverCreated= Server()
+serverCreated.receive()
